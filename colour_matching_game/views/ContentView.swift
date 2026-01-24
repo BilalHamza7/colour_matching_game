@@ -8,7 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var viewModel = GameViewModel()
+    // 1. Declare the ViewModel without initializing it immediately
+    @State private var viewModel: GameViewModel
+    
+    // 2. Create a custom init that takes the difficulty level
+    init(difficulty: Difficulty) {
+        // This links the difficulty passed from HomeView to a new ViewModel
+        _viewModel = State(initialValue: GameViewModel(difficulty: difficulty))
+    }
+    
+    
     
     // Defines a 3-column grid layout
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -16,6 +25,9 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Color Match")
+                .font(.largeTitle).bold()
+            
+            Text("\(viewModel.difficulty.rawValue) Mode")
                 .font(.largeTitle).bold()
             
             LazyVGrid(columns: columns, spacing: 10) {
@@ -58,5 +70,6 @@ struct CardView: View {
 }
 
 #Preview {
-    ContentView()
+    // Provide a default level so the preview can load
+    ContentView(difficulty: .easy)
 }

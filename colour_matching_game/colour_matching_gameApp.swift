@@ -11,7 +11,7 @@ import SwiftUI
 struct colour_matching_gameApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView() // The app starts here now!
         }
     }
 }

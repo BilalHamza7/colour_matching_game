@@ -15,7 +15,12 @@ class GameViewModel {
     
     private var indexOfOneAndOnlyFaceUpCard: Int?
     
-    init() {
+    // Store the difficulty
+    let difficulty: Difficulty
+    
+    // 1. Update the init to accept difficulty
+    init(difficulty: Difficulty) {
+        self.difficulty = difficulty
         setupGame()
     }
     

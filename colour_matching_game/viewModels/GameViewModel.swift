@@ -10,7 +10,7 @@ class GameViewModel {
     var timeRemaining: Double = 60.0
     
     private var selectedIndices: [Int] = []
-    private let mode: GameMode
+    let mode: GameMode
     
     // Accessibility & UI Constants
     private let colors: [Color] = [.red, .blue, .green, .yellow, .purple, .orange, .pink, .cyan]
@@ -26,6 +26,27 @@ class GameViewModel {
     // MARK: - Initialization
     init(mode: GameMode) {
         self.mode = mode
+        setupLevel()
+    }
+    
+    func updateTimer() {
+        guard case .playing = gameState else { return }
+
+        if timeRemaining > 0 {
+            timeRemaining -= 0.1 // Subtracting in 0.1 increments for a smooth countdown
+        } else {
+            timeRemaining = 0
+            gameState = .gameOver(reason: "Time's up!")
+        }
+    }
+    
+    func resetGame() {
+        // 1. Clear the stats
+        self.score = 0
+        self.currentLevel = 1
+        self.timeRemaining = 60.0
+        
+        // 2. Re-generate the cards and state
         setupLevel()
     }
 
@@ -66,7 +87,7 @@ class GameViewModel {
     }
 
     func choose(_ card: Card) {
-        guard gameState == .playing else { return }
+        guard case .playing = gameState else { return }
         guard let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) else { return }
         guard !cards[chosenIndex].isFaceUp && !cards[chosenIndex].isMatched else { return }
 

@@ -1,5 +1,10 @@
+import SwiftUI
+internal import Combine
+
 struct GameView: View {
     @State private var viewModel: GameViewModel
+    
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     init(mode: GameMode) {
         _viewModel = State(initialValue: GameViewModel(mode: mode))
@@ -43,13 +48,18 @@ struct GameView: View {
 
             Spacer()
         }
+        .onReceive(timer) { _ in
+                    viewModel.updateTimer()
+                }
         .background(Color(.systemGroupedBackground))
         .navigationTitle(viewModel.mode.rawValue)
         .overlay {
-            // Level Complete or Game Over Overlays
             if case .gameOver(let reason) = viewModel.gameState {
                 GameOverView(reason: reason, score: viewModel.score) {
-                    viewModel.setupLevel() // Reset
+                    // FIX: Call the full reset instead of just setupLevel
+                    withAnimation {
+                        viewModel.resetGame()
+                    }
                 }
             }
         }

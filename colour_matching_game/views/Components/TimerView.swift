@@ -1,3 +1,5 @@
+import SwiftUI
+
 struct TimerView: View {
     let timeRemaining: Double
     

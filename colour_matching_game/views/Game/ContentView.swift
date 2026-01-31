@@ -6,70 +6,80 @@
 //
 
 import SwiftUI
+internal import Combine
 
 struct ContentView: View {
-    // 1. Declare the ViewModel without initializing it immediately
     @State private var viewModel: GameViewModel
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
-    // 2. Create a custom init that takes the difficulty level
-    init(difficulty: Difficulty) {
-        // This links the difficulty passed from HomeView to a new ViewModel
-        _viewModel = State(initialValue: GameViewModel(difficulty: difficulty))
+    // FIX: Change init to accept GameMode
+    init(mode: GameMode) {
+        _viewModel = State(initialValue: GameViewModel(mode: mode))
     }
     
-    
-    
-    // Defines a 3-column grid layout
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    // FIX: Make grid columns dynamic based on the ViewModel's gridSize
+    var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible(), spacing: 10), count: viewModel.gridSize)
+    }
     
     var body: some View {
         VStack {
-            Text("Color Match")
-                .font(.largeTitle).bold()
+            // Header using the ScoreView component we built
+            ScoreView(
+                score: viewModel.score,
+                level: viewModel.currentLevel,
+                timeRemaining: viewModel.timeRemaining
+            )
+            .padding()
             
-            Text("\(viewModel.difficulty.rawValue) Mode")
-                .font(.largeTitle).bold()
+            Text(viewModel.mode.rawValue)
+                .font(.title2).bold()
+                .foregroundColor(.secondary)
             
+            Spacer()
+            
+            // Grid now adapts to 3x3, 4x4, or 5x5
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(viewModel.cards) { card in
                     CardView(card: card)
-                        .onTapGesture {
-                            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
-                                viewModel.choose(card)
+                        .accessibilityLabel(AccessibilityManager.label(for: card))
+                            .onTapGesture {
+                                withAnimation(.spring()) {
+                                    viewModel.choose(card)
+                                }
                             }
-                        }
                 }
             }
             .padding()
             
-            Button("Reset Game") {
-                viewModel.setupGame()
-            }
-            .buttonStyle(.borderedProminent)
-        }
-    }
-}
-
-// A small sub-view for the card itself
-struct CardView: View {
-    let card: Card
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(card.isFaceUp || card.isMatched ? card.color : Color.gray)
-                .frame(height: 100)
+            Spacer()
             
-            if !card.isFaceUp && !card.isMatched {
-                Text("?")
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
+            Button("Reset Level") {
+                viewModel.setupLevel()
+            }
+            .buttonStyle(.bordered)
+        }
+        .onReceive(timer) { _ in
+                    viewModel.updateTimer()
+                }
+        .overlay {
+            // Check if the game state is gameOver
+            if case .gameOver(let reason) = viewModel.gameState {
+                // ONLY use the component we built
+                GameOverView(reason: reason, score: viewModel.score) {
+                    withAnimation {
+                        viewModel.resetGame() // Now calls the full reset
+                    }
+                }
             }
         }
     }
 }
 
-#Preview {
-    // Provide a default level so the preview can load
-    ContentView(difficulty: .easy)
+#Preview("Classic Mode") {
+    ContentView(mode: .classic)
+}
+
+#Preview("Set Surge") {
+    ContentView(mode: .setSurge)
 }

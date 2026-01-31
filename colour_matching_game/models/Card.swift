@@ -2,14 +2,15 @@ import SwiftUI
 
 struct Card: Identifiable, Equatable {
     let id = UUID()
-    let color: Color
-    let symbol: String    // e.g., "square.fill", "circle.fill" for Accessibility
-    var isFaceUp = false
-    var isMatched = false
-    var isBomb = false    // The "Game Over" tile
+    var color: Color
+    var symbol: String
+    var isFaceUp: Bool = false
+    var isMatched: Bool = false
+    var isBomb: Bool = false
     
-    // For unit testing and comparison
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.id == rhs.id
+    // Static helper for descriptions (for Accessibility)
+    var accessibilityDescription: String {
+        if isBomb { return "Bomb" }
+        return "\(color.description) \(symbol.replacingOccurrences(of: ".fill", with: ""))"
     }
 }

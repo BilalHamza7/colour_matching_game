@@ -1,15 +1,15 @@
-//
-//  Card.swift
-//  colour_matching_game
-//
-//  Created by bsccomp242p-026 on 2026-01-17.
-//
-
 import SwiftUI
 
-struct Card: Identifiable {
-    let id = UUID() // Unique ID so SwiftUI can track it
+struct Card: Identifiable, Equatable {
+    let id = UUID()
     let color: Color
-    var isFaceUp: Bool = false
-    var isMatched: Bool = false
+    let symbol: String    // e.g., "square.fill", "circle.fill" for Accessibility
+    var isFaceUp = false
+    var isMatched = false
+    var isBomb = false    // The "Game Over" tile
+    
+    // For unit testing and comparison
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

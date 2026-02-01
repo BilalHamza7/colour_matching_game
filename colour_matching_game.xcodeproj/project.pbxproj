@@ -6,20 +6,64 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		E0E8A5E82F2DC8D20059D662 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E04A1B282F122A9B002FE21A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E04A1B2F2F122A9B002FE21A;
+			remoteInfo = colour_matching_game;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		E04A1B302F122A9B002FE21A /* colour_matching_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colour_matching_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0E8A5E42F2DC8D20059D662 /* colour_matching_gameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = colour_matching_gameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E0E8A5DF2F2DC8620059D662 /* Exceptions for "colour_matching_game" folder in "colour_matching_game" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/GameLogicTests.swift,
+			);
+			target = E04A1B2F2F122A9B002FE21A /* colour_matching_game */;
+		};
+		E0E8A5EE2F2DC8E20059D662 /* Exceptions for "colour_matching_game" folder in "colour_matching_gameTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tests/GameLogicTests.swift,
+			);
+			target = E0E8A5E32F2DC8D20059D662 /* colour_matching_gameTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E04A1B322F122A9B002FE21A /* colour_matching_game */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E0E8A5DF2F2DC8620059D662 /* Exceptions for "colour_matching_game" folder in "colour_matching_game" target */,
+				E0E8A5EE2F2DC8E20059D662 /* Exceptions for "colour_matching_game" folder in "colour_matching_gameTests" target */,
+			);
 			path = colour_matching_game;
+			sourceTree = "<group>";
+		};
+		E0E8A5E52F2DC8D20059D662 /* colour_matching_gameTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = colour_matching_gameTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E04A1B2D2F122A9B002FE21A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0E8A5E12F2DC8D20059D662 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				E04A1B322F122A9B002FE21A /* colour_matching_game */,
+				E0E8A5E52F2DC8D20059D662 /* colour_matching_gameTests */,
 				E04A1B312F122A9B002FE21A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				E04A1B302F122A9B002FE21A /* colour_matching_game.app */,
+				E0E8A5E42F2DC8D20059D662 /* colour_matching_gameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +116,29 @@
 			productReference = E04A1B302F122A9B002FE21A /* colour_matching_game.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E0E8A5E32F2DC8D20059D662 /* colour_matching_gameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0E8A5EA2F2DC8D20059D662 /* Build configuration list for PBXNativeTarget "colour_matching_gameTests" */;
+			buildPhases = (
+				E0E8A5E02F2DC8D20059D662 /* Sources */,
+				E0E8A5E12F2DC8D20059D662 /* Frameworks */,
+				E0E8A5E22F2DC8D20059D662 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E0E8A5E92F2DC8D20059D662 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E0E8A5E52F2DC8D20059D662 /* colour_matching_gameTests */,
+			);
+			name = colour_matching_gameTests;
+			packageProductDependencies = (
+			);
+			productName = colour_matching_gameTests;
+			productReference = E0E8A5E42F2DC8D20059D662 /* colour_matching_gameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +151,10 @@
 				TargetAttributes = {
 					E04A1B2F2F122A9B002FE21A = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					E0E8A5E32F2DC8D20059D662 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = E04A1B2F2F122A9B002FE21A;
 					};
 				};
 			};
@@ -100,12 +173,20 @@
 			projectRoot = "";
 			targets = (
 				E04A1B2F2F122A9B002FE21A /* colour_matching_game */,
+				E0E8A5E32F2DC8D20059D662 /* colour_matching_gameTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E04A1B2E2F122A9B002FE21A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0E8A5E22F2DC8D20059D662 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +203,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0E8A5E02F2DC8D20059D662 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E0E8A5E92F2DC8D20059D662 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E04A1B2F2F122A9B002FE21A /* colour_matching_game */;
+			targetProxy = E0E8A5E82F2DC8D20059D662 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E04A1B392F122A9D002FE21A /* Debug */ = {
@@ -306,6 +402,46 @@
 			};
 			name = Release;
 		};
+		E0E8A5EB2F2DC8D20059D662 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ioslab1.colour-matching-gameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colour_matching_game.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/colour_matching_game";
+			};
+			name = Debug;
+		};
+		E0E8A5EC2F2DC8D20059D662 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ioslab1.colour-matching-gameTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/colour_matching_game.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/colour_matching_game";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -323,6 +459,15 @@
 			buildConfigurations = (
 				E04A1B3C2F122A9D002FE21A /* Debug */,
 				E04A1B3D2F122A9D002FE21A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0E8A5EA2F2DC8D20059D662 /* Build configuration list for PBXNativeTarget "colour_matching_gameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0E8A5EB2F2DC8D20059D662 /* Debug */,
+				E0E8A5EC2F2DC8D20059D662 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
